@@ -33,5 +33,17 @@
     //Trabalhando com aspas simples e duplas
     echo 'Dom Pedro disse:"Independencia ou Morte!"<br>';
 
-    echo "$nome tem $idade anos de idade";
+    echo "$nome tem $idade anos de idade <br>";
+
+    //Testando o case sensitive - palavras reservadas
+
+    echo "texto 1 <br>";
+    ECHO "texto 2 <br>";
+
+    //Testando o case sensitive  - variáveis
+
+    $primeiroNome = "Carlos <br>";
+    echo $primeiroNome;
+    ECHO $PRIMEIRONOME;
+
 ?>
