@@ -26,7 +26,7 @@
     $texto_minusculo = strtolower($texto);
     $texto_maiusculo = strtoupper($texto);
 
-    
+
     echo $texto;
     echo"<br>";
 
@@ -34,7 +34,24 @@
     echo"<br>";
 
     echo $texto_minusculo;
+    echo "<br>";
+   //trim(): remove espaços em branco no inicio e no final de uma string.
 
-   
+   $texto = " Olá, mundo!     ";
+   echo $texto;
+    $texto_sem_espaco = trim($texto);
+    echo $texto_sem_espaco;
+    echo "<br>";
+
+    //strpos():Encontra a posição da primeira ocorrência de uma substring em uma string
+    $texto = "O rato roueu a roupa do rei";
+    $posicao = strpos($texto,"rato");
+    echo $posicao;
+    echo "<br>"; // SAIDA: 2 (posição da primeira letra da palavra "rato")
+
+    // strrev():inverte uma string
+    $texto = "Scorram-me subi no onibus em marrocos";
+    $texto_invertido = strrev($texto);
+    echo $texto_invertido; //SAIDA: socorram me subino on ibus em marrocos
 
 ?>
