@@ -58,7 +58,7 @@ echo "Diferente de: ";
 echo $num1 != $num2 ? "Verdadeiro <br>": "Falso <br>";
 
 //MAIOR QUE 
-echo "Mairo que: ";
+echo "Maior que: ";
 echo $num1 > $num2 ? "Verdadeiro <br>": "Falso <br>";
 
 //MENOR QUE 
