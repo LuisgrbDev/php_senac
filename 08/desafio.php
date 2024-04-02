@@ -105,10 +105,12 @@ echo "Número primos no intervalo de $numeroN até $numeroM: " ;
     Solicita ao usuário a quantidade de horas e minutos e converte isso para o equivalente total de minutos.
 */
 echo "<br> desafio 7:<br>";
-$horas = 2.30;
+$horas_string = "1:30" ;
+$horas = explode(":",$horas_string);
+$minutos =$horas[0] * 60 + $horas[1];
 // Implementação de Conversão de Horas em Minutos
-$minutos = $horas * 60;
-echo "$horas Horas, tem um total de $minutos Minutos <br> ";
+
+echo "$horas_string Horas, tem um total de $minutos Minutos <br> ";
 
 
 
@@ -121,6 +123,7 @@ echo "$horas Horas, tem um total de $minutos Minutos <br> ";
 // Implementação de Desenho de Pirâmide
 echo "<br> desafio 8:<br>";
 $entrada = 9;
+
 
 for($i = 0; $i < $entrada; $i++){
     for($m = 0; $m <= $i; $m++){
@@ -169,7 +172,12 @@ $num_c = 90;
 // Implementação de Ordenação de Números
 
 
-
+$numeros = [$num_a,$num_b,$num_c];
+sort($numeros);
+echo "Números em ordem Crescente: ";
+foreach($numeros as $numero){
+    echo "$numero;";
+} echo "<br>";
 
 
 //// Exercício 9: Soma de Dígitos
@@ -177,20 +185,12 @@ $num_c = 90;
     Solicita ao usuário um número inteiro positivo e calcula a soma de todos os seus dígitos.
 */
 
-
-
-
-// Implementação de Soma de Dígitos
-
-
-
-
-//// Exercício 10: Geração de Sequência Numérica
-/*
-    Solicita ao usuário um número inteiro N e exibe os primeiros N números da sequência: 1, 3, 6, 10, 15, 21, ...
-*/
-// Implementação de Geração de Sequência Numérica
-
+$numeroSoma = 777;
+$numero_string_array = str_split($numeroSoma);
+$soma = $numero_string_array[0] + $numero_string_array[1] + $numero_string_array [2];
+// ou $soma  = array_sum($numero_string_array); // resultado: 21
+echo "A soma dos digitos de $numeroSoma é igual a = $soma";
+echo "<br>";
 
 
 ?>
