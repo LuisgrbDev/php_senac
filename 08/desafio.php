@@ -58,30 +58,57 @@ echo "A média de  A + B + C = $media <br>";
 /*
     Solicita ao usuário dois números e verifica se o primeiro é múltiplo do segundo.
 */
-
+echo "<br> desafio 5:<br>";
+$numeroMultiplo = 15;
+$multiploDe = 5;
+if($numeroMultiplo % $multiploDe == 0){
+    echo "$numeroMultiplo é multiplo de $multiploDe";
+} else {
+    echo "$numeroMultiplo não é multiplo de $multiploDe";
+}
 // Implementação da Verificação de Múltiplo
 
 
 
 
-//// Exercício 2: Números Primos em um Intervalo
+//// Exercício 6: Números Primos em um Intervalo
 /*
     Solicita dois números inteiros ao usuário (N e M, onde N < M) e exibe todos os números primos no intervalo de N a M.
-*/
+*/echo "<br> desafio 6 :<br>";
+$numeroN = 1;
+$numeroM = 25;
 
 // Implementação de Números Primos em um Intervalo
+function ehprimo($numero) {
+    if($numero <= 1 ){
+       return false;
+    }    
+    
+    for($i = 2; $i <= sqrt($numero); $i++){
+        if($numero % $i == 0){
+           return false;
+        }
+    }
+    return true;
+}
+echo "Número primos no intervalo de $numeroN até $numeroM: " ;
+    for ($i = $numeroN; $i <= $numeroM; $i++){
+        if(ehprimo($i)){
+            echo $i," ";
+        }
+    }
 
 
 
-
-
-//// Exercício 3: Conversão de Horas em Minutos
+//// Exercício 7: Conversão de Horas em Minutos
 /*
     Solicita ao usuário a quantidade de horas e minutos e converte isso para o equivalente total de minutos.
 */
-$horas = 22.12;
-
+echo "<br> desafio 7:<br>";
+$horas = 2.30;
 // Implementação de Conversão de Horas em Minutos
+$minutos = $horas * 60;
+echo "$horas Horas, tem um total de $minutos Minutos <br> ";
 
 
 
@@ -92,8 +119,15 @@ $horas = 22.12;
 */
 
 // Implementação de Desenho de Pirâmide
+echo "<br> desafio 8:<br>";
+$entrada = 9;
 
-
+for($i = 0; $i < $entrada; $i++){
+    for($m = 0; $m <= $i; $m++){
+        echo " *";
+    }
+    echo "<br>";
+}
 
 
 
@@ -101,10 +135,11 @@ $horas = 22.12;
 //// Exercício 6: Contagem de Dígitos em um Número
 /*
     Solicita ao usuário um número inteiro positivo e conta quantos dígitos esse número possui.
-*/
+*/echo "<br> desafio 9:<br>";
+$numero_inteiro = 777;
 
 // Implementação de Contagem de Dígitos em um Número
-
+echo "$numero_inteiro tem um total de:",strlen($numero_inteiro)," digitos <br>";
 
 
 
@@ -112,9 +147,15 @@ $horas = 22.12;
 /*
     Solicita ao usuário uma palavra e verifica se ela é um palíndromo.
 */
-
+$palavra = "radar";
+$pali = strrev($palavra);
 // Implementação de Verificação de Palíndromo
-
+if($palavra == $pali){
+    echo " $palavra é palindromo = $pali";
+} else {
+    echo "$palavra Não é palindromo";
+}
+echo "<br>";
 
 
 
@@ -122,7 +163,9 @@ $horas = 22.12;
 /*
     Solicita ao usuário três números inteiros e os exibe em ordem crescente.
 */
-
+$num_a = 10;
+$num_b = 20;
+$num_c = 90;
 // Implementação de Ordenação de Números
 
 
@@ -133,6 +176,9 @@ $horas = 22.12;
 /*
     Solicita ao usuário um número inteiro positivo e calcula a soma de todos os seus dígitos.
 */
+
+
+
 
 // Implementação de Soma de Dígitos
 
