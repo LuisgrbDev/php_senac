@@ -11,6 +11,11 @@ class Cliente{
         $this->nome = $nome;
         $this->cpf = $cpf;
     }
+
+    public function getNome()
+    {
+        return $this->nome;
+    }
 }
 
 abstract class Conta{
@@ -56,6 +61,11 @@ abstract class Conta{
 
         return false;
     }
+
+    public function __toString()
+    {
+        return "Numero: $this->numero - Saldo: $this->saldo - Cliente: {$this->cliente->getNome()}";
+    }
 }
 
 class ContaCorrente extends Conta{
@@ -66,10 +76,46 @@ class ContaCorrente extends Conta{
         parent::__construct($cliente,$numero,$saldo);
         $this->limiteChequeEspecial = $lilmiteChequeEspecial;
     }
+   
+    public function sacar($valorSaque){
+        $valorLimiteEspecial = $this->saldo + $this->limiteChequeEspecial;
+        if($valorSaque <=$valorLimiteEspecial){
+        return parent::sacar($valorSaque);
+    }
+
+    return false;
+
+    }
 }
 
 class ContaPoupanca extends Conta{
+    private $taxaRendimento; 
 
+    public function __construct($cliente,$numero,$saldo,$taxaRendimento)
+    {
+        parent::__construct($cliente,$numero,$saldo);
+        $this->taxaRendimento = $taxaRendimento;
+    }
+    public function aplicarRendimento(){
+        $this->saldo += $this->saldo * $this->taxaRendimento;
+    }
 }
+
+$cliente1 = new Cliente(" Luis","30225475892");
+$cliente2 = new Cliente(" Joana","5082549874");
+$cliente3 = new Cliente(" Paulo", "987654321-00");
+
+
+$contaCorrente = new ContaCorrente($cliente1,1012,250,100);
+$contaPoupanca = new ContaPoupanca($cliente2,1222,100,0.35);
+$contaCorrente2 = new ContaCorrente($cliente3, 1002, 3000, 1000);
+
+
+echo "Exibir dados $contaCorrente <br>";
+echo "Exibir dados $contaPoupanca <br>";
+echo "Exibir dados $contaCorrente2 <br>";
+
+$contaCorrente->sacar(100);
+echo "Exibir dados $contaCorrente <br>";
 
 ?>

@@ -37,6 +37,8 @@ abstract class Conta{
             $this->saldo += $valorDeposito;
             return true;
         }
+        
+        return false;
     }
 
     public function transferir($valorTransferencia,$contaDestino){
@@ -44,6 +46,8 @@ abstract class Conta{
             $contaDestino->depositar($valorTransferencia);
             return true;
         }
+
+        return false;
     }
 
    
