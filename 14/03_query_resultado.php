@@ -29,9 +29,14 @@ $result = $connection->query($sql);
             echo "ID: ".$row["id"]."<br>";
             echo "Nome: ".$row["nome"]."<br>";
             echo "Email: ".$row["email"]."<br>";
+            echo "Telefone: ".$row["telefone"]."<br>";
             echo "<hr>";
         }
     } else {
         echo "Nenhum Registro Encontrado";
     }
+
+
+    // fechando a conexão com o banco de dados
+    $connection->close();
 ?>
