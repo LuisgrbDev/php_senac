@@ -25,4 +25,31 @@ class DatabaseRepository{
         $stmt->close();
         return $itens;
     }
+
+    public function addItem($nome_produto,$quantidade){
+       $sql = "INSERT INTO itens_compra (nome_produto,quantidade) VALUES (?,?)";
+       $stmt = $this->connection->prepare($sql);
+       $stmt->bind_param("si",$nome_produto, $quantidade);
+       $success = $stmt->execute();
+       $stmt->close();
+       return $success;
+    }
+
+    public function updateItem($id,$nome_produto,$quantidade,$comprado){
+        $sql= "UPDATE  itens_compra SET nome_produto = ?, quantidade = ?, comprado = ?  WHERE id= ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("siii",$nome_produto,$quantidade,$comprado,$id);
+        $success = $stmt->execute();
+        $stmt->close();
+
+    }
+
+    public function deleteITem($id){
+        $sql = "DELETE FROM itens_compra WHERE id = ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bind_param("i",$id);
+        $sucess = $stmt->execute();
+        $stmt->close();
+        return $sucess;
+    }
 }
