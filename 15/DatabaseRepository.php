@@ -26,6 +26,16 @@ class DatabaseRepository{
         return $itens;
     }
 
+    public function getAllComprado(){
+        $sql = "SELECT * FROM itens_compra WHERE comprado = true";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $itens = $result->fetch_all();
+        $stmt->close();
+        return $itens;
+    }
+
     public function addItem($nome_produto,$quantidade){
        $sql = "INSERT INTO itens_compra (nome_produto,quantidade) VALUES (?,?)";
        $stmt = $this->connection->prepare($sql);
