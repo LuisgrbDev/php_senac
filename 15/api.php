@@ -18,8 +18,8 @@ switch($action) {
 
     case 'compraItem':
         $data = json_decode(file_get_contents('php://input',true));
-        $nomeProduto = $data->nome_produto;
-        $quantidade = $data->quantidade;
+        $id = $data->id;
+        $comprado = $data->comprado;
         echo json_decode($repository->compraItem($id, $comprado));
         break; 
 }

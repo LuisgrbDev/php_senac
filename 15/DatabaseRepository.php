@@ -54,12 +54,11 @@ class DatabaseRepository{
     }
 
     public function compraItem($id,$comprado){
-        $sql= "UPDATE  itens_compra SET nome_produto = ?, quantidade = ?, comprado = ?  WHERE id= ?";
+        $sql= "UPDATE  itens_compra SET comprado = ?  WHERE id= ?";
         $stmt = $this->connection->prepare($sql);
-        $stmt->bind_param("siii",$nome_produto,$quantidade,$comprado,$id);
+        $stmt->bind_param("ii",$comprado,$id);
         $success = $stmt->execute();
         $stmt->close();
         return $success;
-
     }
 }
