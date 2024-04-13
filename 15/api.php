@@ -16,6 +16,12 @@ switch($action) {
     echo json_decode($repository->addItem($nomeProduto, $quantidade));
     break;
 
+    case 'compraItem':
+        $data = json_decode(file_get_contents('php://input',true));
+        $nomeProduto = $data->nome_produto;
+        $quantidade = $data->quantidade;
+        echo json_decode($repository->compraItem($id, $comprado));
+        break; 
 }
 
 ?>
