@@ -41,6 +41,19 @@ class DatabaseRepository{
         return $contact;
     }
 
+    public static function getContactByName($nome){
+        $connection = self::connect();
+        $result = $connection->query("SELECT * FROM contatos_info WHERE nome = '$nome' ");
+        $nome = null;
+        if($result-> num_rows > 0 ){
+           $nome =  $result->fetch_assoc();
+        }
+        $connection->close();
+
+        return $nome;
+
+    }
+
 
     public static function InsertContact($nome, $telefone, $email){
         $connection = self::connect();
@@ -57,6 +70,8 @@ class DatabaseRepository{
         $connection->close();
         return $sucess;
     }
+
+    
 
     public static function deleteContact($id){
         $connection =self::connect();

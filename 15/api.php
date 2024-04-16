@@ -32,5 +32,3 @@ switch($action) {
             echo json_encode($repository->getAllComprado());
             break;
 }
-
-?>
