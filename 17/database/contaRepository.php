@@ -18,4 +18,36 @@ class ContaRepository
         $connection->close();
         return $conta;
     }
+
+    public static function getContabyId($id){
+        $connection = DatabaseRepository::connect();
+        $sql =  "SELECT * FROM conta WHERE id=$id";
+        $result = $connection->query($sql);
+        $connection->close();
+        return $result;
+    }
+
+    public static function insertConta($id,$numero,$saldo,$tipo,$limite,$taxa){
+        $connection  = DatabaseRepository::connect();
+        $sql =  "UPDATE conta SET (cliente_id,numero,saldo,tipo,limite_cheque_especial,taxa_rendimento) VALUES ($id,$numero,$saldo,'$tipo',$limite,$taxa) ";
+        $result = $connection->query($sql);
+        $connection->close();
+        return $result;
+    }
+
+    public static function updateConta($id,$numero,$saldo,$tipo,$limite,$taxa){
+        $connection  = DatabaseRepository::connect();
+        $sql =  "UPDATE conta SET numero,saldo = $numero ,tipo = '$tipo',limite_cheque_especial = $limite,taxa_rendimento =$taxa WHERE id = $id";
+        $result = $connection->query($sql);
+        $connection->close();
+        return $result;
+    }
+
+    public static function deleteConta($id){
+        $connection = DatabaseRepository::connect();
+        $sql = $connection->query("DELETE FROM conta WHERE id = $id");
+        $success = $connection->query($sql);
+        $connection->close();
+        return $success;
+    }
 }
