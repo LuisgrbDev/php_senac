@@ -23,13 +23,17 @@ class ContaRepository
         $connection = DatabaseRepository::connect();
         $sql =  "SELECT * FROM conta WHERE id=$id";
         $result = $connection->query($sql);
+        $conta=null;
+        if($result->num_rows > 0){
+            $conta=$result->fetch_assoc();
+        }
         $connection->close();
-        return $result;
+        return $conta;
     }
 
     public static function insertConta($id,$numero,$saldo,$tipo,$limite,$taxa){
         $connection  = DatabaseRepository::connect();
-        $sql =  "UPDATE conta SET (cliente_id,numero,saldo,tipo,limite_cheque_especial,taxa_rendimento) VALUES ($id,$numero,$saldo,'$tipo',$limite,$taxa) ";
+        $sql =  "INSERT INTO conta (cliente_id,numero,saldo,tipo,limite_cheque_especial,taxa_rendimento) VALUES ('$id','$numero','$saldo','$tipo','$limite','$taxa')";
         $result = $connection->query($sql);
         $connection->close();
         return $result;
@@ -37,7 +41,7 @@ class ContaRepository
 
     public static function updateConta($id,$numero,$saldo,$tipo,$limite,$taxa){
         $connection  = DatabaseRepository::connect();
-        $sql =  "UPDATE conta SET numero,saldo = $numero ,tipo = '$tipo',limite_cheque_especial = $limite,taxa_rendimento =$taxa WHERE id = $id";
+        $sql =  "UPDATE conta SET numero = $numero, saldo = $saldo , tipo = '$tipo', limite_cheque_especial = $limite,taxa_rendimento = $taxa WHERE id = $id";
         $result = $connection->query($sql);
         $connection->close();
         return $result;
@@ -46,8 +50,8 @@ class ContaRepository
     public static function deleteConta($id){
         $connection = DatabaseRepository::connect();
         $sql = $connection->query("DELETE FROM conta WHERE id = $id");
-        $success = $connection->query($sql);
+        // $success = $connection->query($sql);
         $connection->close();
-        return $success;
+        return $sql;
     }
 }

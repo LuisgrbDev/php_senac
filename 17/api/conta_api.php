@@ -9,6 +9,10 @@ switch($action){
         listarConta();
         break;
 
+        case 'buscar':
+            buscarContaid();
+            break;
+
     case 'cadastrar':
         cadastarConta();
         break;
@@ -50,17 +54,46 @@ function buscarContaid(){
 }
 
 function cadastarConta(){
-    if($_SERVER['REQUEST_METHOD'] === 'GET'){
+    if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $data =json_decode(file_get_contents("php://input"));
-        $
+        $idcliente = $data->idcliente;
+        $numero = $data->numero;
+        $saldo = $data->saldo;
+        $tipo =$data->tipo;
+        $limite= $data->limite;
+        $taxa = $data->taxa;
+        $success =  ContaRepository::insertConta($idcliente,$numero,$saldo,$tipo,$limite,$taxa);
+        echo json_encode(['succes'=>$success]);
+    }else{
+        http_response_code(405); // Método não permetido
     }
 }
 
 function atualizarConta(){
-
+    if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        $data =json_decode(file_get_contents("php://input"));
+        $id = $data->id;
+        $numero = $data->numero;
+        $saldo = $data->saldo;
+        $tipo =$data->tipo;
+        $limite= $data->limite;
+        $taxa = $data->taxa;
+        $success =  ContaRepository::updateConta($id,$numero,$saldo,$tipo,$limite,$taxa);
+        echo json_encode(['succes'=>$success]);
+    }else{
+        http_response_code(405); // Método não permetido
+    }
 }
 
 function excluirConta(){
+    if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        $data=json_decode(file_get_contents("php://input"));
+        $idconta=$data->id;
+        $success = ContaRepository::deleteConta($idconta);
+        echo json_encode(['success'=>$success]);
 
+    }else{
+        http_response_code(405);
+    }
 }
 ?>
