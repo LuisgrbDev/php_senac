@@ -1,6 +1,6 @@
 <?php
 require_once '../database/ClienteRepository.php';
-
+require_once '../model/cliente.php';
 $action = $_GET['action'];
 
 switch ($action) {
@@ -58,9 +58,8 @@ function cadastrarCliente()
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $data = json_decode(file_get_contents("php://input"));
-        $nome = $data->nome;
-        $cpf = $data->cpf;
-        $success = clienteRepository::insertCliente($nome, $cpf);
+        $cliente = new Cliente($nome,$cpf);
+        $success = clienteRepository::insertCliente($cliente);
         echo json_encode(['success' => $success]);
     }else{
         http_response_code(405); //MÉTODO NÃO PERMITIDO
@@ -73,10 +72,8 @@ function atualizarCliente()
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $data = json_decode(file_get_contents("php://input"));
-        $id = $data->id;
-        $nome = $data->nome;
-        $cpf = $data->cpf;
-        $success = clienteRepository::updateCliente($id,$nome, $cpf);
+        $cliente = new Cliente($data->id, $data->nome, $data->cpf);
+        $success = clienteRepository::updateCliente($cliente);
         echo json_encode(['success' => $success]);
     }else{
         http_response_code(405); //MÉTODO NÃO PERMITIDO

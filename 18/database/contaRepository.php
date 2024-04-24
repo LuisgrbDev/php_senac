@@ -1,5 +1,7 @@
 <?php
 require_once 'DatabaseRepository.php';
+require_once '../model/cliente.php';
+
 
 class ContaRepository
 {
@@ -29,7 +31,7 @@ class ContaRepository
         }
         $connection->close();
         return $conta;
-        str
+        
     }
 
     public static function insertConta($id,$numero,$saldo,$tipo,$limite,$taxa){
