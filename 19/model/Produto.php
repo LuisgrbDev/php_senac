@@ -12,6 +12,11 @@ class Produto implements JsonSerializable{
         $this-> descricao =$descricao;
         $this->preco = $preco;
     }
+
+    public function getId(){
+        return $this->id;
+    }
+
     public function getNome(){
         return $this->nome;
     }
@@ -21,6 +26,7 @@ class Produto implements JsonSerializable{
     public function getPreco(){
         return $this->preco;
     }
+    
     public function JsonSerialize(){
         return[
         'id' => $this->id,

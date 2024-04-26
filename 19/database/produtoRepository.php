@@ -41,5 +41,29 @@ class ProdutoRepository {
         return $success;
     }
 
+    public static function updateProduto(Produto $produto){
+        $connection = DatabaseRepository::connect();
+        $id=$produto->getId();
+        $nome=$produto->getNome();
+        $descricao=$produto->getDescricao();
+        $preco=$produto->getPreco();
+
+        $sql = "UPDATE produto SET nome ='$nome', descricao = '$descricao', preco = '$preco' 
+        WHERE id=$id";
+
+       $success = $connection->query($sql);
+        $connection->close();
+
+        return $success;
+    }
+
+    public static function deleteProduto($id){
+        $connection = DatabaseRepository::connect();
+        $success = $connection->query("DELETE produto WHERE id = $id");
+        $connection->close();
+        return $success;
+
+    }
+
 }
 ?>
