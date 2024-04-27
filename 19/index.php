@@ -8,12 +8,11 @@ $action = $_GET['action'];
 switch($entity){
     case 'pedido':
         require_once 'controller/PedidoController.php';
-        PedidoController::listarPedidos($action);
+        PedidoController::handleRequest($action);
         break;
         
-        case 'Produto':
-            require_once 'controller/ProdutoController.php';
-            ProdutoController::listarProdutos($action);
+        case 'produto':
+            ProdutoController::handleRequest($action);
             break;
         
         default:
