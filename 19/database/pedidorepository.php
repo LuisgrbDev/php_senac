@@ -66,7 +66,8 @@ class PedidoRepository{
     
     public static function buscarPedidoProduto(){
         $connection = DatabaseRepository::connect();
-        $sql = "SELECT * FROM produto_pedido 
+        $sql = "SELECT pedido.id as PEDIDO, produto_pedido.quantidade as Quantidade, produto.nome as PRODUTO, produto.descricao as DESCRIÇÃO, produto.preco as PREÇO, pedido.data_pedido as DATA_PEDIDO, pedido.status as STATUS 
+        FROM produto_pedido 
         INNER JOIN produto ON produto_pedido.produto_id = produto.id 
         INNER JOIN pedido ON produto_pedido.pedido_id = pedido.id";
          $success = $connection->query($sql);
